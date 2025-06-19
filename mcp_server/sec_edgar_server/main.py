@@ -67,6 +67,7 @@ async def load_company_facts_details(cik: str) -> pd.DataFrame | None:
                 'description':description
                 })
     fact_df = pd.DataFrame(fact_rows)
+    fact_df = fact_df.dropna(subset=['label'])
     return fact_df
 
 @mcp.tool()
@@ -89,20 +90,23 @@ async def get_company_cik_number(company_name: str):
 
 
 @mcp.tool()
-async def get_company_facts_information(cik: str):
+async def get_company_facts_information(cik: str, keyword: str):
     """
-    Retrieve all facts information available which includes
+    Retrieve relevant facts information available which includes
     taxonomy, fact name, lable and description details for the input 
-    cik number.
+    cik number and the keyword to filter relevant fact names.
     Args:
         cik (str): The cik number for a company (e.g. "0001717115")
+        keyword (str): The lable name to search facts for (e.g. "amount", "equity","Income Tax")
     Returns:
         A dictionary of facts information that includes
         taxonomy of the fact, fact name, fact label, fact description
     """
     company_facts = await load_company_facts_details(cik=cik)
     
-    res = company_facts.to_dict(orient='records')
+    relevant_company_facts = company_facts[company_facts.label.str.contains(keyword, case=False)]
+    
+    res = relevant_company_facts.to_dict(orient='records')
     
     return res
 

@@ -27,10 +27,11 @@ sec_agent_instruction_prompt = """
         
     ### 2. get_company_facts_information
     Purpose:
-    Retrieve all facts information available which includes taxonomy, fact name, lable and description details for the input 
-    cik number.
+    Retrieve relevant facts information available which includes taxonomy, fact name, lable and description details for the input 
+    cik number and the keyword to filter relevant fact names.
     Args:
         cik (str): The cik number for a company (e.g. "0001717115")
+        keyword (str): The lable name to search facts for (e.g. "amount", "equity","Income Tax")
     Returns:
         A dictionary of facts information that includes
         taxonomy of the fact, fact name, fact label, fact description
