@@ -189,7 +189,7 @@ def display_tool_responses(tool_responses: List[Dict[str, Any]]):
 def main():
     """Main Streamlit application."""
     st.set_page_config(
-        page_title="Host Agent Assistant",
+        page_title="FinSight Assistant",
         page_icon="🤖",
         layout="wide"
     )
@@ -201,7 +201,7 @@ def main():
     initialize_session_state()
     
     # Main UI
-    st.title("🤖 Host Agent Assistant")
+    st.title("🤖 FinSight Assistant")
     st.markdown("Ask questions about financial filings, economic trends reported filings, or request analysis.")
     
     # Sidebar with session info
