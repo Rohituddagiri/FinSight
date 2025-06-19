@@ -127,16 +127,6 @@ async def run_agent_logic(prompt: str, session_id: str) -> Dict[str, Any]:
                             'name': part.function_response.name,
                             'response': response_data
                         })
-                        
-                        # Check for audio URL in ElevenLabs responses
-                        if (isinstance(response_data, dict) and 
-                            'response' in response_data and 
-                            isinstance(response_data['response'], dict)):
-                            inner_response = response_data['response']
-                            if 'audio_url' in inner_response:
-                                audio_url = inner_response['audio_url']
-                        elif isinstance(response_data, dict) and 'audio_url' in response_data:
-                            audio_url = response_data['audio_url']
             
             # Handle final response
             if event.is_final_response():
@@ -150,7 +140,6 @@ async def run_agent_logic(prompt: str, session_id: str) -> Dict[str, Any]:
             'final_response': final_response,
             'tool_calls': tool_calls,
             'tool_responses': tool_responses,
-            'audio_url': audio_url,
             'success': True
         }
         
@@ -282,13 +271,6 @@ def main():
             # Show tool interactions
             display_tool_calls(result['tool_calls'])
             display_tool_responses(result['tool_responses'])
-            
-            # Handle audio if present
-            if result['audio_url']:
-                st.audio(result['audio_url'], format="audio/mp3")
-                # Add to session audio files
-                if result['audio_url'] not in st.session_state.audio_files:
-                    st.session_state.audio_files.append(result['audio_url'])
             
             # Add assistant message to history
             assistant_message = {

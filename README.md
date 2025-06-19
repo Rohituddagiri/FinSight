@@ -33,7 +33,12 @@ Your intelligent companion for financial research — precise insights from SEC 
 
 ## 🧠 How It Works
 
-![finsight_image](finsight_architecture.png)
+![finsight_image](FinSight_arch.png)
+
+---
+## Architecture Diagram
+
+![sequence](finsight_sequence.png)
 
 ---
 
@@ -49,12 +54,7 @@ Your intelligent companion for financial research — precise insights from SEC 
 ## 📁 Project Structure
 
 ```
-├── agent.py                # Entry point for agents and runner
-├── prompt.py              # Instructions for root and sub-agents
-├── tools/                 # Custom tool implementations
-├── logs/agent.log         # Timestamped logs of queries and events
-├── .env                   # Contains SEC_AGENT_MODEL and ROOT_AGENT_MODEL
-└── README.md              # This file
+
 ```
 
 ---
