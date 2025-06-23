@@ -39,6 +39,13 @@ Your intelligent companion for financial research — precise insights from SEC 
 ---
 ## Architecture Diagram
 
+The system consists of:
+
+- **SecAgent (A2A Service)**: A worker agent for information retrieval from US SEC.gov. This agent is powered by the SEC EDGAR MCP Server Tools .
+- **HostAgent (A2A Service)**: A coordinator agent that breaks the complex user questions into information retreiving questions.
+- **Streamlit UIs**: 
+  - **Embedded Runner UI**: The UI runs the HostAgent in the same process.
+
 ![sequence](finsight_sequence.png)
 
 ---
@@ -97,6 +104,50 @@ Your intelligent companion for financial research — precise insights from SEC 
       ├─ requirements.txt
       └─ uv.lock
 ```
+
+---
+
+## Running the Full System
+
+This is the recommended way to run the entire multi-agent system.
+
+1.  **Start all agent services**:
+    A convenience script is provided to launch the Sec agent in the background. The logs will be saved to the `logs/` directory.
+
+    ```bash
+    python scripts/start_agents.py
+    ```
+
+    You can check the status of the agents with `ps aux | grep _agent`.
+
+2.  **Run a UI Application**:
+
+    - **For the Embedded Runner UI:**
+      ```bash
+      streamlit run ui/app.py --server.port 8080
+      ```
+
+3.  **Stopping the services**:
+    You can stop the background agent processes with:
+    ```bash
+    pkill -f "_agent"
+    ```
+
+## Testing Individual Agents (Standalone)
+
+For development and debugging, it's crucial to test each agent independently. Each agent has a `test_client.py` that communicates directly with its A2A service.
+
+1.  **Start the target agent's service**. For example, to test the Notion agent:
+
+    ```bash
+    python -m sec_agent --port 8002
+    ```
+
+2.  **In a separate terminal, run its test client**:
+
+    ```bash
+    python sec_agent/test_client.py
+    ```
 
 
 ---
