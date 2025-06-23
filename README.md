@@ -41,7 +41,7 @@ Your intelligent companion for financial research — precise insights from SEC 
 
 The system consists of:
 
-- **SecAgent (A2A Service)**: A worker agent for information retrieval from US SEC.gov. This agent is powered by the SEC EDGAR MCP Server Tools .
+- **SecAgent (A2A Service)**: A worer agent for information retrieval from US SEC.gov. This agent is powered by the SEC EDGAR MCP Server Tools .
 - **HostAgent (A2A Service)**: A coordinator agent that breaks the complex user questions into information retreiving questions.
 - **Streamlit UIs**: 
   - **Embedded Runner UI**: The UI runs the HostAgent in the same process.
