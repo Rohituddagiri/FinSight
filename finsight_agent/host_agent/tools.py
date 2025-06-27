@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 # this could come from a service discovery mechanism.
 AGENT_URL_MAP: Dict[str, str] = {
     # "sec_agent": SEC_AGENT_A2A_URL,
-    "sec_agent": "https://0ff9-65-38-124-250.ngrok-free.app"
+    "sec_agent": "https://ae43-65-38-124-250.ngrok-free.app"
 }
 
 async def delegate_task(agent_name: str, task_description: str) -> str:
