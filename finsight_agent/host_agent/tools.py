@@ -18,7 +18,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 # Mapping of agent names to their URLs. In a more dynamic system,
 # this could come from a service discovery mechanism.
 AGENT_URL_MAP: Dict[str, str] = {
-    "sec_agent": SEC_AGENT_A2A_URL,
+    # "sec_agent": SEC_AGENT_A2A_URL,
+    "sec_agent": "https://0ff9-65-38-124-250.ngrok-free.app"
 }
 
 async def delegate_task(agent_name: str, task_description: str) -> str:
